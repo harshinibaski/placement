@@ -1,0 +1,38 @@
+public class RearrangeArray {
+    public static void rearrangeArray(int[] nums) {
+        int n = nums.length;
+        int left = 0, right = n - 1;
+
+        while (left <= right) {
+            // Find the first positive number from the left
+            while (left < n && nums[left] < 0) {
+                left++;
+            }
+
+            // Find the first negative number from the right
+            while (right >= 0 && nums[right] >= 0) {
+                right--;
+            }
+
+            // Swap the positive and negative numbers
+            if (left < right) {
+                int temp = nums[left];
+                nums[left] = nums[right];
+                nums[right] = temp;
+                left++;
+                right--;
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] inputArray = {-12, 11, -13, -5, 6, -7, 5, -3, -6};
+        
+        rearrangeArray(inputArray);
+
+        System.out.println("After rearranging array: ");
+        for (int num : inputArray) {
+            System.out.print(num + " ");
+        }
+    }
+}
